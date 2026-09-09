@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all
+    @links = Link.recent_first
   end
 
   def new; end
@@ -10,6 +10,7 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to root_path, notice: "Link was successfully created."
     else
+      index # calls index method first - instead of @links = Link.recent_first again
       render :index, status: :unprocessable_entity
     end
   end
