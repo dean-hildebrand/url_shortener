@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_09_080300) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_12_120428) do
   create_table "links", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "description"
@@ -20,4 +20,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_09_080300) do
     t.string "url"
     t.integer "views_count"
   end
+
+  create_table "views", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "ip"
+    t.integer "link_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.index ["link_id"], name: "index_views_on_link_id"
+  end
+
+  add_foreign_key "views", "links"
 end

@@ -5,7 +5,7 @@ class CreateLinks < ActiveRecord::Migration[8.1]
       t.string :title
       t.string :description
       t.string :image
-      t.integer :views_count
+      t.integer :views_count, default: 0
 
       t.timestamps
     end
